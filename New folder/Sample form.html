@@ -1,0 +1,119 @@
+ <!DOCTYPE html>
+<h1>Sample Form</h1>
+
+<form name="sampleForm" method="post" action="submit_form.php" onsubmit="return validateForm()">
+    
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+    <span id="nameError" class="error"></span>
+    <br><br>
+    
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+    <span id="emailError" class="error"></span>
+    <br><br>
+    
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+    <span id="passwordError" class="error"></span>
+    <br><br>
+    
+    <label for="confirmPassword">Confirm Password:</label>
+    <input type="password" id="confirmPassword" name="confirmPassword" required>
+    <span id="confirmPasswordError" class="error"></span>
+    <br><br>
+    
+    <label>Gender:</label>
+    <input type="radio" id="male" name="gender" value="male" required>
+    <label for="male">Male</label>
+    <input type="radio" id="female" name="gender" value="female">
+    <label for="female">Female</label>
+    <span id="genderError" class="error"></span>
+    <br><br>
+    
+    <label for="country">Country:</label>
+    <select id="country" name="country" required>
+        <option value="">Select</option>
+        <option value="usa">USA</option>
+        <option value="uk">UK</option>
+        <option value="canada">Canada</option>
+    </select>
+    <span id="countryError" class="error"></span>
+    <br><br>
+    
+    <input type="checkbox" id="agree" name="agree" required>
+    <label for="agree">I agree to the terms and conditions</label>
+    <span id="agreeError" class="error"></span>
+    <br><br>
+    
+    <input type="submit" value="Submit">
+</form>
+
+<script>
+    function validateForm() {
+        var nameInput = document.getElementById("name");
+        var emailInput = document.getElementById("email");
+        var passwordInput = document.getElementById("password");
+        var confirmPasswordInput = document.getElementById("confirmPassword");
+        var genderInputs = document.querySelectorAll('input[name="gender"]:checked');
+        var countryInput = document.getElementById("country");
+        var agreeInput = document.getElementById("agree");
+        
+        var nameError = document.getElementById("nameError");
+        var emailError = document.getElementById("emailError");
+        var passwordError = document.getElementById("passwordError");
+        var confirmPasswordError = document.getElementById("confirmPasswordError");
+        var genderError = document.getElementById("genderError");
+        var countryError = document.getElementById("countryError");
+        var agreeError = document.getElementById("agreeError");
+        
+        var isValid = true;
+        
+        nameError.innerHTML = "";
+        emailError.innerHTML = "";
+        passwordError.innerHTML = "";
+        confirmPasswordError.innerHTML = "";
+        genderError.innerHTML = "";
+        countryError.innerHTML = "";
+        agreeError.innerHTML = "";
+
+        // Name validation
+        if (nameInput.value.trim() === "") {
+            nameError.innerHTML = "Please enter your name";
+            isValid = false;
+        }
+
+        // Email validation
+        if (emailInput.value.trim() === "") {
+            emailError.innerHTML = "Please enter your email";
+            isValid = false;
+        } else if (!validateEmail(emailInput.value.trim())) {
+            emailError.innerHTML = "Please enter a valid email";
+            isValid = false;
+        }
+
+        // Password validation
+        if (passwordInput.value.trim() === "") {
+            passwordError.innerHTML = "Please enter a password";
+            isValid = false;
+        }
+
+        // Confirm password validation
+        if (confirmPasswordInput.value.trim() === "") {
+            confirmPasswordError.innerHTML = "Please confirm your password";
+            isValid = false;
+        } else if (passwordInput.value.trim() !== confirmPasswordInput.value.trim()) {
+            confirmPasswordError.innerHTML = "Passwords do not match";
+            isValid = false;
+        }
+
+        // Gender validation
+        if (genderInputs.length === 0) {
+            genderError.innerHTML = "Please select your gender";
+            isValid = false;
+        }
+
+        // Country validation
+        if (countryInput.value.trim() === "") {
+            country
+</html>
